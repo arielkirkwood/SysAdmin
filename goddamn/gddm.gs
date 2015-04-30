@@ -59,8 +59,8 @@ function getRowAsArray(sheet, row) {
   var data = dataRange.getValues();
   var columns = [];
 
-  for (i in data) {
-    var row = data[i];
+  for (var i in data) {
+    row = data[i];
 
     Logger.log("Got row", row);
 
@@ -149,12 +149,13 @@ function replaceString(doc, String, newString) {
 function generateEmployeeDatasheet() {
 
   var data = SpreadsheetApp.openById(employee_SPREADSHEET);
+  var employee_ID;
 
   if(!employee_ID) {
     employee_ID = getCurrentRow();
     //if the current line is the Column Headers line then ask the user to specify the ID, very rare case.
     if (employee_ID == 1) {
-      var employee_ID = Browser.inputBox("Enter employee ID (row number) in the spreadsheet", Browser.Buttons.OK_CANCEL);
+      employee_ID = Browser.inputBox("Enter employee ID (row number) in the spreadsheet", Browser.Buttons.OK_CANCEL);
     }
   }
 
